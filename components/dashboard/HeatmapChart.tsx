@@ -114,12 +114,10 @@ export default function HeatmapChart({
     let longestStreak = 0;
     let currentStreak = 0;
 
+    let dayCount = 0;
     const current = new Date(startDate);
     while (current <= endDate) {
-      const dayOfYear = Math.floor(
-        (current.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
-      );
-      const offset = dayOfYear + startDow;
+      const offset = dayCount + startDow;
       const week = Math.floor(offset / 7);
       const day = offset % 7;
 
@@ -157,6 +155,7 @@ export default function HeatmapChart({
         lastMonth = month;
       }
 
+      dayCount++;
       current.setDate(current.getDate() + 1);
     }
 
@@ -176,8 +175,15 @@ export default function HeatmapChart({
   const currentYear = new Date().getFullYear();
 
   const handleMouseEnter = useCallback(
-    (entry: HeatmapEntry, cellX: number, cellY: number) => {
-      setTooltip({ entry, x: cellX, y: cellY });
+    (entry: HeatmapEntry, event: React.MouseEvent) => {
+      const container = containerRef.current;
+      if (!container) return;
+      const containerRect = container.getBoundingClientRect();
+      setTooltip({
+        entry,
+        x: event.clientX - containerRect.left,
+        y: event.clientY - containerRect.top,
+      });
     },
     [],
   );
@@ -226,14 +232,14 @@ export default function HeatmapChart({
         </div>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5" ref={containerRef}>
         {loading ? (
           <div className="flex h-40 items-center justify-center">
             <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
           </div>
         ) : grid.length > 0 ? (
           <>
-            <div ref={containerRef} className="heatmap-container relative pb-1">
+            <div className="relative pb-1">
               {containerWidth > 0 && (
                 <svg
                   width="100%"
@@ -302,9 +308,7 @@ export default function HeatmapChart({
                               entry.totalMinutes > 0 ? "pointer" : "default",
                             outline: "none",
                           }}
-                          onMouseEnter={() =>
-                            handleMouseEnter(entry, x + cellSize / 2, y)
-                          }
+                          onMouseEnter={(e) => handleMouseEnter(entry, e)}
                           onMouseLeave={handleMouseLeave}
                         />
                       );
