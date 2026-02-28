@@ -4,6 +4,15 @@ import {
   SessionDetail,
   SessionFilters,
 } from "@/types/session";
+import {
+  DashboardSummary,
+  DashboardOverview,
+  CategoryStats,
+  HeatmapEntry,
+  PeriodStats,
+  WeekdayStats,
+  GoalsData,
+} from "@/types/dashboard";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -92,6 +101,42 @@ export async function getSessions(
 
 export async function getSessionById(id: string): Promise<SessionDetail> {
   return apiFetch<SessionDetail>(`/sessions/${id}`);
+}
+
+export async function getDashboardSummary(): Promise<DashboardSummary> {
+  return apiFetch<DashboardSummary>("/dashboard/summary");
+}
+
+export async function getDashboardOverview(
+  period: string = "week",
+): Promise<DashboardOverview> {
+  return apiFetch<DashboardOverview>(`/dashboard/overview?period=${period}`);
+}
+
+export async function getDashboardByCategory(
+  period: string = "month",
+): Promise<CategoryStats[]> {
+  return apiFetch<CategoryStats[]>(`/dashboard/by-category?period=${period}`);
+}
+
+export async function getDashboardHeatmap(
+  year: number = new Date().getFullYear(),
+): Promise<HeatmapEntry[]> {
+  return apiFetch<HeatmapEntry[]>(`/dashboard/heatmap?year=${year}`);
+}
+
+export async function getDashboardByPeriod(): Promise<PeriodStats[]> {
+  return apiFetch<PeriodStats[]>("/dashboard/by-period");
+}
+
+export async function getDashboardByWeekday(): Promise<WeekdayStats[]> {
+  return apiFetch<WeekdayStats[]>("/dashboard/by-weekday");
+}
+
+export async function getDashboardGoals(
+  period: string = "week",
+): Promise<GoalsData> {
+  return apiFetch<GoalsData>(`/dashboard/goals?period=${period}`);
 }
 
 export { ApiError };

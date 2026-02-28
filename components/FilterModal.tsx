@@ -55,17 +55,25 @@ export default function FilterModal({
     onClose();
   };
 
+  const selectClass =
+    "w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100";
+
+  const inputClass =
+    "w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100";
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl dark:bg-gray-900">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Filter className="h-5 w-5 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-900">Filtros</h2>
+            <Filter className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              Filtros
+            </h2>
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           >
             <X className="h-5 w-5" />
           </button>
@@ -73,7 +81,7 @@ export default function FilterModal({
 
         <div className="space-y-4">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">
+            <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Categoria
             </label>
             <select
@@ -84,7 +92,7 @@ export default function FilterModal({
                   category: e.target.value || undefined,
                 })
               }
-              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className={selectClass}
             >
               {categories.map((c) => (
                 <option key={c.value} value={c.value}>
@@ -95,7 +103,7 @@ export default function FilterModal({
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">
+            <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Período
             </label>
             <select
@@ -103,7 +111,7 @@ export default function FilterModal({
               onChange={(e) =>
                 setFilters({ ...filters, period: e.target.value || undefined })
               }
-              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className={selectClass}
             >
               {periods.map((p) => (
                 <option key={p.value} value={p.value}>
@@ -114,7 +122,7 @@ export default function FilterModal({
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">
+            <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Status
             </label>
             <select
@@ -122,7 +130,7 @@ export default function FilterModal({
               onChange={(e) =>
                 setFilters({ ...filters, success: e.target.value || undefined })
               }
-              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className={selectClass}
             >
               {successOptions.map((s) => (
                 <option key={s.value} value={s.value}>
@@ -134,7 +142,7 @@ export default function FilterModal({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Data início
               </label>
               <input
@@ -146,11 +154,11 @@ export default function FilterModal({
                     startDate: e.target.value || undefined,
                   })
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className={inputClass}
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Data fim
               </label>
               <input
@@ -162,49 +170,8 @@ export default function FilterModal({
                     endDate: e.target.value || undefined,
                   })
                 }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className={inputClass}
               />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Ordenar por
-              </label>
-              <select
-                value={filters.sortBy || "date"}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    sortBy: e.target.value || undefined,
-                  })
-                }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-              >
-                <option value="date">Data</option>
-                <option value="totalFocusMinutes">Tempo de foco</option>
-                <option value="completedCycles">Ciclos completos</option>
-                <option value="category">Categoria</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">
-                Direção
-              </label>
-              <select
-                value={filters.sortDir || "desc"}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    sortDir: e.target.value || undefined,
-                  })
-                }
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-              >
-                <option value="desc">Mais recente primeiro</option>
-                <option value="asc">Mais antigo primeiro</option>
-              </select>
             </div>
           </div>
         </div>
@@ -212,7 +179,7 @@ export default function FilterModal({
         <div className="mt-6 flex gap-3">
           <button
             onClick={handleClear}
-            className="flex-1 cursor-pointer rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            className="flex-1 cursor-pointer rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Limpar
           </button>

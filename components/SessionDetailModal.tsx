@@ -69,14 +69,14 @@ export default function SessionDetailModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
+      <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl dark:bg-gray-900">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             Detalhes da Sessão
           </h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+            className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
           >
             <X className="h-5 w-5" />
           </button>
@@ -85,37 +85,41 @@ export default function SessionDetailModal({
         {loading && (
           <div className="flex flex-col items-center justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-            <p className="mt-3 text-sm text-gray-500">Carregando...</p>
+            <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+              Carregando...
+            </p>
           </div>
         )}
 
         {error && (
           <div className="flex flex-col items-center justify-center py-12">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50 dark:bg-red-950">
               <AlertTriangle className="h-6 w-6 text-red-500" />
             </div>
-            <p className="mt-3 text-sm text-red-600">{error}</p>
+            <p className="mt-3 text-sm text-red-600 dark:text-red-400">
+              {error}
+            </p>
           </div>
         )}
 
         {session && !loading && !error && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between rounded-xl bg-gray-50 p-4">
+            <div className="flex items-center justify-between rounded-xl bg-gray-50 p-4 dark:bg-gray-800">
               <div className="flex items-center gap-3">
                 {session.success ? (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                    <CheckCircle2 className="h-5 w-5 text-green-600" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                 ) : (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-                    <XCircle className="h-5 w-5 text-red-500" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
+                    <XCircle className="h-5 w-5 text-red-500 dark:text-red-400" />
                   </div>
                 )}
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                     {session.success ? "Concluída" : "Não concluída"}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {session.completedCycles}/{session.targetCycles} ciclos
                   </p>
                 </div>
@@ -123,8 +127,8 @@ export default function SessionDetailModal({
               <span
                 className={`rounded-full px-3 py-1 text-xs font-medium ${
                   session.success
-                    ? "bg-green-100 text-green-700"
-                    : "bg-red-100 text-red-700"
+                    ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                    : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
                 }`}
               >
                 {session.success ? "Sucesso" : "Incompleta"}
@@ -190,12 +194,14 @@ function DetailItem({
   value: string;
 }) {
   return (
-    <div className="rounded-xl border border-gray-100 p-3">
-      <div className="mb-1 flex items-center gap-1.5 text-gray-400">
+    <div className="rounded-xl border border-gray-100 p-3 dark:border-gray-800">
+      <div className="mb-1 flex items-center gap-1.5 text-gray-400 dark:text-gray-500">
         {icon}
         <span className="text-xs font-medium">{label}</span>
       </div>
-      <p className="text-sm font-semibold text-gray-900">{value}</p>
+      <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+        {value}
+      </p>
     </div>
   );
 }

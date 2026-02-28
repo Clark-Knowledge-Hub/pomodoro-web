@@ -68,11 +68,15 @@ export function getCategoryIcon(category: string): string {
 
 export function getCategoryColor(category: string): string {
   const map: Record<string, string> = {
-    TECHNOLOGY: "text-blue-600 bg-blue-50",
-    MATH: "text-purple-600 bg-purple-50",
-    PORTUGUESE: "text-emerald-600 bg-emerald-50",
-    ENGLISH: "text-amber-600 bg-amber-50",
-    OTHER: "text-gray-600 bg-gray-50",
+    TECHNOLOGY: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950",
+    MATH: "text-purple-600 bg-purple-50 dark:text-purple-400 dark:bg-purple-950",
+    PORTUGUESE:
+      "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950",
+    ENGLISH: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950",
+    OTHER: "text-gray-600 bg-gray-50 dark:text-gray-400 dark:bg-gray-800",
   };
-  return map[category] || "text-gray-600 bg-gray-50";
+  return (
+    map[category] ||
+    "text-gray-600 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+  );
 }
