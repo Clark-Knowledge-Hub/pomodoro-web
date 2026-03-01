@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+<h1>🍅 PomoCube — Frontend</h1>
+<h3>Interface Web do Ecossistema PomoCube</h3>
 
-First, run the development server:
+<p>Interface web responsiva e intuitiva para visualização de métricas, configuração de dispositivos e acompanhamento em tempo real do <strong>PomoCube IoT</strong></p>
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+<br/>
+
+> 📊 Interface web responsiva e intuitiva para visualização de métricas, configuração de dispositivos e acompanhamento em tempo real do PomoCube.
+
+</div>
+
+---
+
+## 📋 Sumário
+
+- [Sobre](#-sobre)
+- [Tecnologias](#-tecnologias)
+- [Configuração do Ambiente](#-configuração-do-ambiente)
+- [Variáveis de Ambiente](#-variáveis-de-ambiente)
+
+---
+
+## 🎯 Sobre
+
+O frontend do **PomoCube** é uma aplicação web construída com **Next.js** e **TypeScript**, projetada para ser a central de controle e visualização do ecossistema PomoCube IoT. Por meio dela, o usuário acompanha em tempo real suas sessões de estudo, analisa métricas de produtividade através de gráficos interativos e monitora o desempenho ao longo do tempo com um heatmap de atividades estilo GitHub.
+
+---
+
+## 🛠 Tecnologias
+
+- [Next.js](https://nextjs.org/) — Framework React com SSR e roteamento integrado
+- [TypeScript](https://www.typescriptlang.org/) — Tipagem estática
+- [React](https://reactjs.org/) — Biblioteca de interfaces de usuário
+- [Tailwind CSS](https://tailwindcss.com/) — Estilização utilitária
+
+---
+
+## ⚙️ Configuração do Ambiente
+
+### Pré-requisitos
+
+- [Node.js](https://nodejs.org/) 18+
+- `npm`, `yarn`, `pnpm` ou `bun`
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/ClarkAshida/pomodoro-web
+cd pomodoro-web
+```
+
+### 2. Instale as dependências
+
+```bash
+npm install
+```
+
+### 3. Configure as variáveis de ambiente
+
+Crie o arquivo `.env.local` na raiz do projeto:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
+NEXT_PUBLIC_FRONTEND_API_KEY=pomodoro-frontend-secret-key-2025
+```
+
+### 4. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O aplicativo estará disponível em: **[http://localhost:3000](http://localhost:3000)**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Variáveis de Ambiente
 
-## Learn More
+Todas as variáveis expostas ao browser **devem** ser prefixadas com `NEXT_PUBLIC_`.
 
-To learn more about Next.js, take a look at the following resources:
+| Variável                      | Descrição                                          |
+|-------------------------------|----------------------------------------------------|
+| `NEXT_PUBLIC_API_BASE_URL`    | URL base da API (ex: `http://localhost:8080`)      |
+| `NEXT_PUBLIC_FRONTEND_API_KEY`| Chave de autenticação para consumo da API          |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> ⚠️ Reinicie o servidor de desenvolvimento sempre que alterar o arquivo `.env.local`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Build e Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build para produção
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
+
+### Executar em modo produção localmente
+
+```bash
+npm run start
+```
+
+<div align="center">
+
+Parte do ecossistema **PomoCube IoT** 🍅
+
+</div>
